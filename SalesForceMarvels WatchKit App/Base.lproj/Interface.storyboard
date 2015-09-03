@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--Tasks-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller title="Tasks" id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <table alignment="left" id="zah-TN-1TX">
+                            <items>
+                                <tableRow identifier="taskRow" id="y87-8S-c3f" customClass="TaskRow">
+                                    <group key="rootItem" width="1" height="45.5" alignment="left" layout="vertical" id="zhH-ME-998">
+                                        <items>
+                                            <label alignment="left" text="Label" id="1JF-6a-pel">
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                            <label alignment="left" text="Label" id="jtG-He-fSP">
+                                                <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="taskStatus" destination="jtG-He-fSP" id="JmI-zY-UPm"/>
+                                        <outlet property="taskSubject" destination="1JF-6a-pel" id="G8e-ZS-THQ"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="taskList" destination="zah-TN-1TX" id="sKe-fC-LJF"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="347"/>
+        </scene>
+        <!--taskDetail-->
+        <scene sceneID="8OV-cU-c8I">
+            <objects>
+                <controller identifier="TaskDetailInterfaceController" title="taskDetail" id="Dfx-xO-HTt" customClass="TaskDetailInterfaceController">
+                    <items>
+                        <group width="1" alignment="left" id="gU4-nj-gcp">
+                            <items>
+                                <label width="135" height="24" alignment="left" text="Bhavna Gupta" numberOfLines="0" id="QXL-ZQ-a63">
+                                    <fontDescription key="font" type="italicSystem" weight="bold" pointSize="12"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="8Hn-lH-eIL">
+                            <items>
+                                <label alignment="left" verticalAlignment="center" text="Subject : " id="CdE-9Z-dYW">
+                                    <fontDescription key="font" type="boldSystem" pointSize="12"/>
+                                </label>
+                                <label alignment="left" verticalAlignment="center" text="Email" id="Jri-KD-gHh">
+                                    <fontDescription key="font" type="italicSystem" weight="bold" pointSize="11"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="644-Z0-end">
+                            <items>
+                                <label alignment="left" verticalAlignment="center" text="Status : " id="At8-TK-cgT">
+                                    <fontDescription key="font" type="boldSystem" pointSize="12"/>
+                                </label>
+                                <label alignment="left" verticalAlignment="center" text="Not Started" id="Nud-GL-Zkg">
+                                    <fontDescription key="font" type="italicSystem" weight="bold" pointSize="11"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="p6m-ir-haM">
+                            <items>
+                                <label alignment="left" verticalAlignment="center" text="Type : " numberOfLines="0" id="E32-AZ-FtH">
+                                    <fontDescription key="font" type="boldSystem" pointSize="12"/>
+                                </label>
+                                <label alignment="left" verticalAlignment="center" text="Call" textAlignment="left" id="6sd-M0-sBU">
+                                    <fontDescription key="font" type="italicSystem" weight="bold" pointSize="11"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="UDr-uc-BJc">
+                            <items>
+                                <label alignment="left" verticalAlignment="center" text="Due Date :" numberOfLines="0" id="TF4-4P-aqr">
+                                    <fontDescription key="font" type="boldSystem" pointSize="12"/>
+                                </label>
+                                <label alignment="left" text="27-08-2015" id="HRj-e7-yUr">
+                                    <fontDescription key="font" type="italicSystem" weight="bold" pointSize="11"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="kfw-AS-g1y">
+                            <items>
+                                <button width="1" alignment="center" verticalAlignment="bottom" title="Mark As Complete" id="TDU-Rk-xnf">
+                                    <color key="backgroundColor" red="0.28235294119999998" green="0.62745098040000002" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                    <connections>
+                                        <action selector="updateTask" destination="Dfx-xO-HTt" id="Tfv-f5-ERZ"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="dueDate" destination="HRj-e7-yUr" id="Jvv-1u-URP"/>
+                        <outlet property="markAsCompleteBtn" destination="TDU-Rk-xnf" id="7tq-Ma-HX5"/>
+                        <outlet property="status" destination="Nud-GL-Zkg" id="tcV-ov-406"/>
+                        <outlet property="subject" destination="Jri-KD-gHh" id="Ads-if-X8V"/>
+                        <outlet property="type" destination="6sd-M0-sBU" id="Ncm-8s-VeZ"/>
+                        <outlet property="userName" destination="QXL-ZQ-a63" id="pIF-Xu-YXP"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="439" y="346"/>
+        </scene>
+        <!--BadgeAssignInterfaceController-->
+        <scene sceneID="CyX-eV-W1b">
+            <objects>
+                <controller identifier="BadgeAssignInterfaceController" id="pNI-d8-DBH" customClass="BadgeAssignInterfaceController">
+                    <items>
+                        <group width="1" height="145" alignment="left" layout="vertical" id="s7A-ZY-fdd">
+                            <items>
+                                <label alignment="center" text="Task Completed Successfully" textAlignment="center" numberOfLines="2" id="8le-UB-GaQ">
+                                    <fontDescription key="font" type="boldSystem" pointSize="14"/>
+                                </label>
+                                <imageView width="48" height="48" alignment="center" id="ega-6B-rgL"/>
+                                <label alignment="center" text="Badge Assigned" textAlignment="left" numberOfLines="0" id="kMV-AX-mfH">
+                                    <fontDescription key="font" type="system" weight="medium" pointSize="12"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="badgeImage" destination="ega-6B-rgL" id="ZSe-8j-KUc"/>
+                        <outlet property="badgeNameLabel" destination="kMV-AX-mfH" id="u0x-Av-9on"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="638" y="346"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="BOz-TT-tkC">
+            <objects>
+                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController">
+                    <items>
+                        <group alignment="left" id="t8f-Gd-c4y"/>
+                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="235" y="672"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="1001"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="1001"/>
+        </scene>
+    </scenes>
+</document>

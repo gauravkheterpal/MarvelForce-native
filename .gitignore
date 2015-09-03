@@ -1,0 +1,7 @@
+# Mac crap
+.DS_Store
+SalesForceMarvels.xcodeproj/xcuserdata/
+SalesForceMarvels.xcodeproj/project.xcworkspace/xcuserdata/
+SalesForceMarvels.xcworkspace/xcuserdata/
+Pods/
+Podfile.lock
