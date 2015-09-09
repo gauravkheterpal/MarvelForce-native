@@ -23,7 +23,7 @@
  */
 
 #import "AppDelegate.h"
-//#import "InitialViewController.h"
+#import "InitialViewController.h"
 #import "RootViewController.h"
 #import "ResultViewController.h"
 #import "CharacterListViewController.h"
@@ -130,7 +130,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (void)initializeAppViewState
 {
-//    self.window.rootViewController = [[InitialViewController alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = [[InitialViewController alloc] initWithNibName:nil bundle:nil];
     [self.window makeKeyAndVisible];
 }
 

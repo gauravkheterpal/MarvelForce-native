@@ -61,6 +61,8 @@
 		272FAE591B78BDC3002B0ECC /* CharacterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 272FAE571B78BDC3002B0ECC /* CharacterListViewController.xib */; };
 		272FAE5D1B79F097002B0ECC /* ComicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272FAE5B1B79F097002B0ECC /* ComicListViewController.m */; };
 		272FAE5E1B79F097002B0ECC /* ComicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 272FAE5C1B79F097002B0ECC /* ComicListViewController.xib */; };
+		273E921E1BA019C100DAB932 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273E921C1BA019C100DAB932 /* InitialViewController.m */; settings = {ASSET_TAGS = (); }; };
+		273E921F1BA019C100DAB932 /* InitialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273E921D1BA019C100DAB932 /* InitialViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		277072CF1B6222C00052F1AA /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 277072CD1B6222C00052F1AA /* AccountsViewController.m */; };
 		277072D01B6222C00052F1AA /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 277072CE1B6222C00052F1AA /* AccountsViewController.xib */; };
 		277072D91B6236790052F1AA /* tab-acont-icn.png in Resources */ = {isa = PBXBuildFile; fileRef = 277072D11B6236790052F1AA /* tab-acont-icn.png */; };
@@ -197,6 +199,9 @@
 		272FAE5A1B79F097002B0ECC /* ComicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicListViewController.h; sourceTree = "<group>"; };
 		272FAE5B1B79F097002B0ECC /* ComicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicListViewController.m; sourceTree = "<group>"; };
 		272FAE5C1B79F097002B0ECC /* ComicListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComicListViewController.xib; sourceTree = "<group>"; };
+		273E921B1BA019C100DAB932 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		273E921C1BA019C100DAB932 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		273E921D1BA019C100DAB932 /* InitialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialViewController.xib; sourceTree = "<group>"; };
 		2755A0E21B53BC8500AEA583 /* ProfilePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProfilePlaceholder.png; sourceTree = "<group>"; };
 		2755A1C81B56591100AEA583 /* libSalesforceNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSalesforceNetwork.a; path = NativeSqlAggregator/Dependencies/SalesforceNetwork/libSalesforceNetwork.a; sourceTree = "<group>"; };
 		2755A1CA1B56592400AEA583 /* libSalesforceSDKCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSalesforceSDKCommon.a; path = NativeSqlAggregator/Dependencies/SalesforceSDKCommon/libSalesforceSDKCommon.a; sourceTree = "<group>"; };
@@ -1283,6 +1288,9 @@
 		824A9E301724E2A900C9BD79 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				273E921B1BA019C100DAB932 /* InitialViewController.h */,
+				273E921C1BA019C100DAB932 /* InitialViewController.m */,
+				273E921D1BA019C100DAB932 /* InitialViewController.xib */,
 				BBA2F9291B8F46B0008AF744 /* NewChatterFeedViewController.h */,
 				BBA2F92A1B8F46B0008AF744 /* NewChatterFeedViewController.m */,
 				BBA2F92B1B8F46B0008AF744 /* NewChatterFeedViewController.xib */,
@@ -1831,6 +1839,7 @@
 				272FAE5E1B79F097002B0ECC /* ComicListViewController.xib in Resources */,
 				277072DB1B6236790052F1AA /* tab-cater-icn.png in Resources */,
 				277072F21B663E820052F1AA /* DetailViewController.xib in Resources */,
+				273E921F1BA019C100DAB932 /* InitialViewController.xib in Resources */,
 				271A97BB1B5663A70044805E /* ProfilePlaceholder.png in Resources */,
 				271A97BC1B5663A70044805E /* RootViewController.xib in Resources */,
 				271A97BD1B5663A70044805E /* commit.txt in Resources */,
@@ -1911,6 +1920,7 @@
 				272FAE581B78BDC3002B0ECC /* CharacterListViewController.m in Sources */,
 				BBA2F91F1B8F4552008AF744 /* UIImage+GIF.m in Sources */,
 				BBA2F9081B8F4552008AF744 /* AFURLResponseSerialization.m in Sources */,
+				273E921E1BA019C100DAB932 /* InitialViewController.m in Sources */,
 				BBA2F9201B8F4552008AF744 /* UIImage+MultiFormat.m in Sources */,
 				BBA2F9021B8F4552008AF744 /* AFHTTPRequestOperationManager.m in Sources */,
 				BBA2F9011B8F4552008AF744 /* AFHTTPRequestOperation.m in Sources */,
@@ -1994,7 +2004,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_PREFIX = com.salesforce.mobilesdk;
 				CODE_SIGN_ENTITLEMENTS = SalesForceMarvels.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2037,7 +2046,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUNDLE_PREFIX = com.salesforce.mobilesdk;
 				CODE_SIGN_ENTITLEMENTS = SalesForceMarvels.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
