@@ -19,8 +19,10 @@
     
     NSLog(@"Context %@",context);
     if (context!= nil && [context isKindOfClass:[NSDictionary class]]) {
+        
         NSDictionary *badgeDetail = (NSDictionary*)context;
         if ([badgeDetail objectForKey:@"badgeImage"] != nil) {
+            
             
            [self.badgeImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[badgeDetail objectForKey:@"badgeImage"]]]];
             
@@ -28,6 +30,8 @@
         if ([badgeDetail objectForKey:@"badgeName"]!=nil) {
             [self.badgeNameLabel setText:[badgeDetail objectForKey:@"badgeName"]];
         }
+    }else {
+        [self.badgeNameLabel setText:@"No badge assigned"];
     }
     
     // Configure interface objects here.

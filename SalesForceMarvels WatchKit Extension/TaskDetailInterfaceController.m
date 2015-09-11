@@ -72,6 +72,8 @@
                     
                     if (error) {
                         NSLog(@"GET character request error :%@ ",error);
+                        [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+
                     }else {
                         
                         NSLog(@"ReplyInfo :%@",replyInfo);
@@ -83,6 +85,8 @@
                             [self checkUserBadgeRequest:badgeRequest];
                             
                             
+                        }else {
+                            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                         }
                     }
                 }];
