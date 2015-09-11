@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -27,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
-                <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3E1-SS-7MA">
+                <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E1-SS-7MA">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
@@ -143,18 +143,24 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerY" secondItem="3E1-SS-7MA" secondAttribute="centerY" id="1nt-LG-B8K"/>
+                <constraint firstAttribute="bottom" secondItem="3E1-SS-7MA" secondAttribute="bottom" id="4it-Vy-csH"/>
                 <constraint firstItem="y41-3M-Vzm" firstAttribute="leading" secondItem="OyV-Cg-vIb" secondAttribute="leading" id="A1W-h2-Pep"/>
                 <constraint firstAttribute="bottom" secondItem="8wc-Vo-N8c" secondAttribute="bottom" constant="8" id="ASq-hS-sZh"/>
+                <constraint firstItem="3E1-SS-7MA" firstAttribute="top" secondItem="OyV-Cg-vIb" secondAttribute="top" id="KX5-VM-ob2"/>
                 <constraint firstAttribute="centerY" secondItem="8wc-Vo-N8c" secondAttribute="centerY" id="LGF-YK-9xb"/>
                 <constraint firstAttribute="centerX" secondItem="y41-3M-Vzm" secondAttribute="centerX" id="Nwh-rW-3EE"/>
                 <constraint firstItem="8wc-Vo-N8c" firstAttribute="top" secondItem="OyV-Cg-vIb" secondAttribute="top" constant="8" id="O6q-d3-MS3"/>
                 <constraint firstItem="8wc-Vo-N8c" firstAttribute="leading" secondItem="OyV-Cg-vIb" secondAttribute="leading" constant="8" id="QGi-XN-gh6"/>
+                <constraint firstAttribute="trailing" secondItem="3E1-SS-7MA" secondAttribute="trailing" id="WV9-OL-MJd"/>
                 <constraint firstAttribute="bottom" secondItem="y41-3M-Vzm" secondAttribute="bottom" id="Y3D-WA-hbf"/>
                 <constraint firstAttribute="trailing" secondItem="8wc-Vo-N8c" secondAttribute="trailing" constant="8" id="ald-cL-DTR"/>
                 <constraint firstAttribute="trailing" secondItem="y41-3M-Vzm" secondAttribute="trailing" id="d36-Ii-CZv"/>
                 <constraint firstAttribute="centerX" secondItem="8wc-Vo-N8c" secondAttribute="centerX" id="eae-NJ-XRA"/>
+                <constraint firstItem="3E1-SS-7MA" firstAttribute="leading" secondItem="OyV-Cg-vIb" secondAttribute="leading" id="foP-RR-Ez8"/>
                 <constraint firstAttribute="centerY" secondItem="y41-3M-Vzm" secondAttribute="centerY" id="gqF-gD-pHh"/>
                 <constraint firstItem="y41-3M-Vzm" firstAttribute="top" secondItem="OyV-Cg-vIb" secondAttribute="top" id="kLR-2o-Lxn"/>
+                <constraint firstAttribute="centerX" secondItem="3E1-SS-7MA" secondAttribute="centerX" id="q5Z-bF-brK"/>
             </constraints>
             <point key="canvasLocation" x="395" y="231"/>
         </view>

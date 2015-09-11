@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -25,7 +25,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UWi-Ac-cve">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
-                <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jj4-WZ-qRu">
+                <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jj4-WZ-qRu">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
@@ -106,10 +106,16 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="UWi-Ac-cve" firstAttribute="leading" secondItem="b96-TN-acZ" secondAttribute="leading" id="3aZ-fH-LKe"/>
+                <constraint firstAttribute="trailing" secondItem="Jj4-WZ-qRu" secondAttribute="trailing" id="8B7-H3-4fQ"/>
                 <constraint firstItem="qLD-3m-Dao" firstAttribute="leading" secondItem="b96-TN-acZ" secondAttribute="leading" constant="8" id="DbC-br-jE4"/>
                 <constraint firstAttribute="centerY" secondItem="qLD-3m-Dao" secondAttribute="centerY" id="Gqt-3u-c4q"/>
+                <constraint firstAttribute="bottom" secondItem="Jj4-WZ-qRu" secondAttribute="bottom" id="IzK-Ds-0l8"/>
+                <constraint firstItem="Jj4-WZ-qRu" firstAttribute="top" secondItem="b96-TN-acZ" secondAttribute="top" id="N5q-RG-bic"/>
+                <constraint firstItem="Jj4-WZ-qRu" firstAttribute="leading" secondItem="b96-TN-acZ" secondAttribute="leading" id="OUn-1x-zLC"/>
                 <constraint firstAttribute="trailing" secondItem="qLD-3m-Dao" secondAttribute="trailing" constant="8" id="PLo-cF-UaD"/>
                 <constraint firstAttribute="trailing" secondItem="UWi-Ac-cve" secondAttribute="trailing" id="Q4h-Hf-Vcc"/>
+                <constraint firstAttribute="centerX" secondItem="Jj4-WZ-qRu" secondAttribute="centerX" id="Vs6-Ry-zMh"/>
+                <constraint firstAttribute="centerY" secondItem="Jj4-WZ-qRu" secondAttribute="centerY" id="Ylr-yX-OqH"/>
                 <constraint firstItem="UWi-Ac-cve" firstAttribute="top" secondItem="b96-TN-acZ" secondAttribute="top" id="dbZ-cv-O4t"/>
                 <constraint firstItem="qLD-3m-Dao" firstAttribute="top" secondItem="b96-TN-acZ" secondAttribute="top" constant="8" id="evx-kQ-7ZD"/>
                 <constraint firstAttribute="bottom" secondItem="qLD-3m-Dao" secondAttribute="bottom" constant="8" id="iWx-yf-yi5"/>

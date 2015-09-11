@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -26,7 +26,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lN6-Cs-DZs">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
-                <view alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vly-if-zYL">
+                <view alpha="0.69999999999999973" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vly-if-zYL">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
@@ -165,15 +165,21 @@
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="lN6-Cs-DZs" secondAttribute="centerY" id="0ca-yM-qJK"/>
                 <constraint firstAttribute="centerX" secondItem="lN6-Cs-DZs" secondAttribute="centerX" id="0tw-fv-6eJ"/>
+                <constraint firstAttribute="bottom" secondItem="Vly-if-zYL" secondAttribute="bottom" id="1AD-ED-zRp"/>
                 <constraint firstAttribute="centerY" secondItem="OuX-EK-u4g" secondAttribute="centerY" id="3S7-rG-85x"/>
                 <constraint firstAttribute="trailing" secondItem="OuX-EK-u4g" secondAttribute="trailing" constant="8" id="584-8w-mYp"/>
                 <constraint firstAttribute="bottom" secondItem="OuX-EK-u4g" secondAttribute="bottom" constant="8" id="CS9-vk-nIJ"/>
+                <constraint firstItem="Vly-if-zYL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FjO-z6-PxP"/>
+                <constraint firstItem="Vly-if-zYL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KPX-W6-wad"/>
                 <constraint firstAttribute="bottom" secondItem="lN6-Cs-DZs" secondAttribute="bottom" id="Nzl-Ms-uga"/>
                 <constraint firstItem="lN6-Cs-DZs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TlL-6U-YeY"/>
                 <constraint firstItem="lN6-Cs-DZs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XWN-Vx-WX9"/>
                 <constraint firstItem="OuX-EK-u4g" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="ahz-xn-Hk5"/>
                 <constraint firstAttribute="trailing" secondItem="lN6-Cs-DZs" secondAttribute="trailing" id="bhu-4P-Brq"/>
+                <constraint firstAttribute="trailing" secondItem="Vly-if-zYL" secondAttribute="trailing" id="jBM-tS-Ygu"/>
                 <constraint firstItem="OuX-EK-u4g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="l9i-D5-37d"/>
+                <constraint firstAttribute="centerY" secondItem="Vly-if-zYL" secondAttribute="centerY" id="odX-On-jGo"/>
+                <constraint firstAttribute="centerX" secondItem="Vly-if-zYL" secondAttribute="centerX" id="pRk-OR-g9r"/>
                 <constraint firstAttribute="centerX" secondItem="OuX-EK-u4g" secondAttribute="centerX" id="vwx-5x-Dh3"/>
             </constraints>
             <point key="canvasLocation" x="395" y="231"/>

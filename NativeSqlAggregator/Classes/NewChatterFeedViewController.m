@@ -529,9 +529,20 @@
                 }
                 
             }
-            int rIndex = arc4random() % [self.charactersInfoWithImageArray count];
-            NSDictionary *badgeInfoDict = [[NSDictionary alloc]initWithDictionary:[self.charactersInfoWithImageArray objectAtIndex:rIndex]];
-            [self setSelectedMarvel:badgeInfoDict];
+            
+            if (self.charactersInfoWithImageArray != nil && self.charactersInfoWithImageArray.count > 0) {
+                int rIndex = arc4random() % [self.charactersInfoWithImageArray count];
+                NSDictionary *badgeInfoDict = [[NSDictionary alloc]initWithDictionary:[self.charactersInfoWithImageArray objectAtIndex:rIndex]];
+                [self setSelectedMarvel:badgeInfoDict];
+            }else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [SVProgressHUD dismiss];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No marvel character found" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                });
+            }
+            
         }
     }];
 }
