@@ -30,7 +30,12 @@
         
         NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.metacube.mobile.salesforcemarvel"];
         id value = [shared valueForKey:@"SFUserName"];
-        [self.userName setText:[NSString stringWithFormat:@"%@",value]];
+        if (value == (id)[NSNull null]) {
+            [self.userName setText:[NSString stringWithFormat:@"%@",value]];
+        }else {
+            [self.userName setText:@""];
+        }
+        
         [self.subject setText:[taskDetail objectForKey:@"Subject"]];
         [self.status setText:[taskDetail objectForKey:@"Status"]];
         [self.type setText:[taskDetail objectForKey:@"Type"]];
