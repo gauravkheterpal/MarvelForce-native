@@ -347,7 +347,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
             
             [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *e) {
                 
-                reply(@{ @"error:": @"Fetch Badge Request Failed" });
+                reply(@{ @"error:": e.localizedDescription });
                 
             } completeBlock:^(id response) {
                 
@@ -393,7 +393,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
         }else {
             
-            reply(@{ @"error:": @"Not Have any character" });
+            reply(@{ @"error:": @"marvel character not found" });
         }
     }else if ([[userInfo objectForKey:@"request"] isEqualToString:@"createNewBadgeRequest"]) {
         
@@ -401,7 +401,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
         
         [[SFRestAPI sharedInstance] performCreateWithObjectType:@"Badge__c" fields:badgeInfoDict failBlock:^(NSError *e) {
             
-            reply(@{ @"error:": @"Badge Create Request Failed" });
+            reply(@{ @"error:": e.localizedDescription });
             
         } completeBlock:^(NSDictionary *dict) {
            
@@ -431,7 +431,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
         SFRestRequest *request = [[SFRestAPI sharedInstance] requestForQuery:[NSString stringWithFormat:@"SELECT Badge1__c,Badge2__c,Badge3__c,Badge4__c,Badge5__c,Badge6__c,Badge7__c,Badge8__c,Badge9__c,Badge10__c FROM User WHERE Id = '%@'",userID]];
         [[SFRestAPI sharedInstance] sendRESTRequest:request failBlock:^(NSError *e) {
             
-            reply(@{ @"error:": @"Error in badge fetch" });
+            reply(@{ @"error:": e.localizedDescription });
             
         } completeBlock:^(id response) {
             
