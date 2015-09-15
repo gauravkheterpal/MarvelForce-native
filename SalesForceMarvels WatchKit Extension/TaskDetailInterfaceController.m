@@ -152,9 +152,9 @@
             NSLog(@"checkUserBadgeRequest Error :%@",error);
             [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
             
-        }else if ([replyInfo objectForKey:@"Error"]!=nil) {
+        }else if ([replyInfo objectForKey:@"error:"]!=nil) {
             
-            NSLog(@"checkUserBadgeRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+            NSLog(@"checkUserBadgeRequest Error :%@",[replyInfo objectForKey:@"error:"]);
             [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
             
         }else if([replyInfo objectForKey:@"Success"]!=nil) {
@@ -197,9 +197,9 @@
                             NSLog(@"createNewBadgeRequest Error :%@",error);
                             [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                             
-                        }else if ([replyInfo objectForKey:@"Error"]!=nil) {
+                        }else if ([replyInfo objectForKey:@"error:"]!=nil) {
                             
-                            NSLog(@"createNewBadgeRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+                            NSLog(@"createNewBadgeRequest Error :%@",[replyInfo objectForKey:@"error:"]);
                             [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                             
                             
@@ -236,9 +236,9 @@
                                         NSLog(@"fetchUserBadgeRequest Error :%@",error);
                                         [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                                         
-                                    }else if ([replyInfo objectForKey:@"Error"]!=nil) {
+                                    }else if ([replyInfo objectForKey:@"error:"]!=nil) {
                                         
-                                        NSLog(@"fetchUserBadgeRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+                                        NSLog(@"fetchUserBadgeRequest Error :%@",[replyInfo objectForKey:@"error:"]);
                                         [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                                         
                                     }else if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Fetch User Badge Success"]) {
@@ -265,10 +265,10 @@
                                                     [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                                                     
                                                     
-                                                }else if ([replyInfo objectForKey:@"Error"]!=nil) {
+                                                }else if ([replyInfo objectForKey:@"error:"]!=nil) {
                                                     
                                                     
-                                                    NSLog(@"assignBadgeUserRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+                                                    NSLog(@"assignBadgeUserRequest Error :%@",[replyInfo objectForKey:@"error:"]);
                                                     [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                                                     
                                                     
