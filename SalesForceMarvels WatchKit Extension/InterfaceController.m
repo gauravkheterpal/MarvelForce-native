@@ -37,8 +37,14 @@
         if (error) {
             NSLog(@"%@", error);
             NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.metacube.mobile.salesforcemarvel"];
-            id value = [shared valueForKey:@"Tasks"];
-            self.dataObjects = (NSMutableArray*)value;
+
+            if ([shared valueForKey:@"Tasks"] != (id)[NSNull null] && [shared valueForKey:@"Tasks"] != nil) {
+                
+                self.dataObjects = (NSMutableArray*)[shared valueForKey:@"Tasks"];
+            }else {
+                
+                self.dataObjects = [[NSMutableArray alloc]init];
+            }
             [self configureTableWithData];
             
         } else {
@@ -69,8 +75,19 @@
        
         TaskRow* theRow = [self.taskList rowControllerAtIndex:i];
         
-        [theRow.taskSubject setText:[[self.dataObjects objectAtIndex:i]objectForKey:@"Subject"]];
-        [theRow.taskStatus setText:[[self.dataObjects objectAtIndex:i]objectForKey:@"Status"]];
+        if ([[self.dataObjects objectAtIndex:i]objectForKey:@"Subject"]!=nil && [[self.dataObjects objectAtIndex:i]objectForKey:@"Subject"]!=(id)[NSNull null] ) {
+            [theRow.taskSubject setText:[[self.dataObjects objectAtIndex:i]objectForKey:@"Subject"]];
+        }else {
+            [theRow.taskSubject setText:@""];
+        }
+        
+        if ([[self.dataObjects objectAtIndex:i]objectForKey:@"Status"]!=nil && [[self.dataObjects objectAtIndex:i]objectForKey:@"Status"]!=(id)[NSNull null]) {
+            [theRow.taskStatus setText:[[self.dataObjects objectAtIndex:i]objectForKey:@"Status"]];
+        }else {
+            [theRow.taskStatus setText:@""];
+        }
+        
+        
     }
 }
 

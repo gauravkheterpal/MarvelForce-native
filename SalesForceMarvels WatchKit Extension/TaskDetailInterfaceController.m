@@ -21,7 +21,7 @@
     self.taskID = [[NSString alloc]init];
     self.badgeID = [[NSString alloc]init];
     self.badgeDetail = [[NSDictionary alloc]init];
-   
+    
     NSLog(@"Context %@",context);
     if (context!= nil && [context isKindOfClass:[NSDictionary class]]) {
         NSDictionary *taskDetail = (NSDictionary*)context;
@@ -29,18 +29,49 @@
         // Access group storage
         
         NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.metacube.mobile.salesforcemarvel"];
-        id value = [shared valueForKey:@"SFUserName"];
-        if (value == (id)[NSNull null]) {
-            [self.userName setText:[NSString stringWithFormat:@"%@",value]];
+        
+        
+        NSLog(@"Username :%@",[shared valueForKey:@"SFUserName"]);
+        if ([shared valueForKey:@"SFUserName"] != (id)[NSNull null] && [shared valueForKey:@"SFUserName"] != nil) {
+            [self.userName setText:[NSString stringWithFormat:@"%@",[shared valueForKey:@"SFUserName"]]];
         }else {
             [self.userName setText:@""];
         }
         
-        [self.subject setText:[taskDetail objectForKey:@"Subject"]];
-        [self.status setText:[taskDetail objectForKey:@"Status"]];
-        [self.type setText:[taskDetail objectForKey:@"Type"]];
-        [self.dueDate setText:[taskDetail objectForKey:@"ActivityDate"]];
-        self.taskID = [taskDetail objectForKey:@"Id"];
+        if ([taskDetail objectForKey:@"Subject"]!=nil && [taskDetail objectForKey:@"Subject"]!=(id)[NSNull null]) {
+            [self.subject setText:[taskDetail objectForKey:@"Subject"]];
+        }else {
+            [self.subject setText:@""];
+        }
+        
+        if ([taskDetail objectForKey:@"Status"]!=nil && [taskDetail objectForKey:@"Status"]!=(id)[NSNull null]) {
+            [self.status setText:[taskDetail objectForKey:@"Status"]];
+        }else {
+            [self.status setText:@""];
+        }
+        
+        if ([taskDetail objectForKey:@"Type"]!=nil && [taskDetail objectForKey:@"Type"]!=(id)[NSNull null]) {
+            [self.type setText:[taskDetail objectForKey:@"Type"]];
+        }else {
+            [self.type setText:@""];
+        }
+        
+        if ([taskDetail objectForKey:@"ActivityDate"]!=nil && [taskDetail objectForKey:@"ActivityDate"]!=(id)[NSNull null]) {
+            [self.dueDate setText:[taskDetail objectForKey:@"ActivityDate"]];
+        }else {
+            [self.dueDate setText:@""];
+        }
+        
+        if ([taskDetail objectForKey:@"Id"]!=nil && [taskDetail objectForKey:@"Id"]!=(id)[NSNull null]) {
+            self.taskID = [taskDetail objectForKey:@"Id"];
+        }else {
+            self.taskID = @"";
+        }
+        
+        
+        
+        
+        
     }
     
     // Configure interface objects here.
@@ -58,48 +89,57 @@
 
 - (IBAction)updateTask {
     
-    // Invoke Parent app to get latest Tasks data from the local store
-    NSDictionary *userInfo = @{@"request" : @"markTaskAsComplete", @"taskID": self.taskID};//set up userInfo dictionary
-    
-    [TaskDetailInterfaceController openParentApplication:userInfo reply:^(NSDictionary *replyInfo, NSError *error) {
+    if (self.taskID != nil && ![self.taskID isEqualToString:@""] && self.taskID!=(id)[NSNull null]) {
+        // Invoke Parent app to get latest Tasks data from the local store
+        NSDictionary *userInfo = @{@"request" : @"markTaskAsComplete", @"taskID": self.taskID};//set up userInfo dictionary
         
-        if (error) {
-            NSLog(@"%@", error);
-        } else {
+        [TaskDetailInterfaceController openParentApplication:userInfo reply:^(NSDictionary *replyInfo, NSError *error) {
             
-            NSLog(@"ReplyInfo :%@",replyInfo);
-            
-            if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Task Completed Successfully"]) {
+            if (error) {
+                NSLog(@"MarkTaskAsComplete Error %@", error);
                 
-                NSDictionary *getCharacterRequest = @{@"request" : @"getMarvelCharacter"};
+            } else {
                 
-                [TaskDetailInterfaceController openParentApplication:getCharacterRequest reply:^(NSDictionary *replyInfo, NSError *error) {
+                NSLog(@"MarkTaskAsComplete ReplyInfo :%@",replyInfo);
+                
+                if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Task Completed Successfully"]) {
                     
-                    if (error) {
-                        NSLog(@"GET character request error :%@ ",error);
-                        [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
-
-                    }else {
+                    NSDictionary *getCharacterRequest = @{@"request" : @"getMarvelCharacter"};
+                    
+                    [TaskDetailInterfaceController openParentApplication:getCharacterRequest reply:^(NSDictionary *replyInfo, NSError *error) {
                         
-                        NSLog(@"ReplyInfo :%@",replyInfo);
-                        
-                        if ([replyInfo objectForKey:@"Success"]!=nil) {
-                            
-                            NSMutableArray *charactersList = [replyInfo objectForKey:@"Success"];
-                            NSDictionary *badgeRequest = @{@"request" : @"checkUserBadgeRequest",@"charactersList":charactersList};
-                            [self checkUserBadgeRequest:badgeRequest];
-                            
+                        if (error) {
+                            NSLog(@"GET character request error :%@ ",error);
+                            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
                             
                         }else {
-                            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                            
+                            NSLog(@"ReplyInfo :%@",replyInfo);
+                            
+                            if ([replyInfo objectForKey:@"Success"]!=nil) {
+                                
+                                NSMutableArray *charactersList = [replyInfo objectForKey:@"Success"];
+                                NSDictionary *badgeRequest = @{@"request" : @"checkUserBadgeRequest",@"charactersList":charactersList};
+                                [self checkUserBadgeRequest:badgeRequest];
+                                
+                                
+                            }else {
+                                [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                            }
                         }
-                    }
-                }];
+                    }];
+                }else {
+                    
+                    NSLog(@"MarkTaskAsComplete Failed");
+                }
+                
             }
             
-        }
+        }];
         
-    }];
+    }else {
+        NSLog(@"Task can't be updated");
+    }
     
 }
 
@@ -109,15 +149,17 @@
         
         if (error) {
             
-            NSLog(@"Error in checkUserBadgeRequest");
+            NSLog(@"checkUserBadgeRequest Error :%@",error);
+            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
             
         }else if ([replyInfo objectForKey:@"Error"]!=nil) {
             
-            NSLog(@"Error in checkUserBadgeRequest");
+            NSLog(@"checkUserBadgeRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
             
         }else if([replyInfo objectForKey:@"Success"]!=nil) {
             
-            NSLog(@"ReplyInfo checkUserBadgeRequest:%@",replyInfo);
+            NSLog(@"checkUserBadgeRequest ReplyInfo :%@",replyInfo);
             
             if ([[replyInfo objectForKey:@"Success"] isEqualToString:@"Congratulations, You already have 10 badges"]) {
                 
@@ -133,106 +175,144 @@
                 
             }else if ([[replyInfo objectForKey:@"Success"] isEqualToString:@"Badge Exists False"]) {
                 
-                NSDictionary *badgeDetail = [replyInfo objectForKey:@"BadgeDetail"];
-                NSDictionary *createNewBadgeRequest = @{@"request" : @"createNewBadgeRequest",@"BadgeDetail":badgeDetail};
                 
-                [TaskDetailInterfaceController openParentApplication:createNewBadgeRequest reply:^(NSDictionary *replyInfo, NSError *error) {
-
-                    NSLog(@"ReplyInfo createNewBadgeRequest:%@",replyInfo);
-                    if (error) {
+                if ([replyInfo objectForKey:@"BadgeDetail"] == nil && [replyInfo objectForKey:@"BadgeDetail"] == (id)[NSNull null]) {
+                    
+                    NSLog(@"checkUserBadgeRequest Failed");
+                    [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                    
+                    
+                }else
+                {
+                    
+                    NSDictionary *badgeDetailResponse = [replyInfo objectForKey:@"BadgeDetail"];
+                    
+                    NSDictionary *createNewBadgeRequest = @{@"request" : @"createNewBadgeRequest",@"BadgeDetail":badgeDetailResponse};
+                    
+                    [TaskDetailInterfaceController openParentApplication:createNewBadgeRequest reply:^(NSDictionary *replyInfo, NSError *error) {
                         
-                        NSLog(@"Error in create New Badge");
-                        
-                    }else if ([replyInfo objectForKey:@"Error"]!=nil) {
-                        
-                        NSLog(@"Error in create New Badge");
-                        
-                    }else if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Badge Created Successfully"]) {
-                       
-                      /*  NSDictionary *badgeInfo = [replyInfo objectForKey:@"BadgeDetail"];
-                        NSString *characterName = [badgeInfo objectForKey:@"Name"];
-                        NSString *imageStr = [badgeInfo objectForKey:@"Badge_Image_URL__c"];
-                        
-                         NSURL *characterImageURL = [NSURL URLWithString:[imageStr stringByReplacingOccurrencesOfString:@"imagetypeplaceholder" withString:@"standard_medium"]];
-                        
-                        NSDictionary *detailInfo = @{@"badgeName" : [NSString stringWithFormat:@"%@ badge assigned",characterName],@"badgeImage":characterImageURL};
-                        
-                        [self pushControllerWithName:@"BadgeAssignInterfaceController" context:detailInfo];
-                        */
-                        
-                       
-                        self.badgeID = [replyInfo objectForKey:@"objectID"];
-                        self.badgeDetail = [replyInfo objectForKey:@"BadgeDetail"];
-                        
-                        NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.metacube.mobile.salesforcemarvel"];
-                        NSString *userID = [shared valueForKey:@"SFUserID"];
-                        NSDictionary *fetchUserBadgeRequest = @{@"request" : @"fetchUserBadgeRequest",@"userID":userID};
-                        
-                        NSLog(@"Fetch user badge request:%@",fetchUserBadgeRequest);
-                        [TaskDetailInterfaceController openParentApplication:fetchUserBadgeRequest reply:^(NSDictionary *replyInfo, NSError *error) {
+                        NSLog(@"ReplyInfo createNewBadgeRequest:%@",replyInfo);
+                        if (error) {
                             
-                            NSLog(@"ReplyInfo fetchUserBadgeRequest:%@",replyInfo);
-
-                            if (error) {
-                                
-                                NSLog(@"fetch User Badge Error :%@",error);
-                                
-                            }else if ([replyInfo objectForKey:@"Error"]!=nil) {
-                                
-                                NSLog(@"fetch User Badge Error ");
-                                
-                            }else if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Fetch User Badge Success"]) {
-                                
-                                NSString *badgeNumberTobeAssigned = [replyInfo objectForKey:@"badgeNumberTobeAssigned"];
-
-                                if (self.badgeID != nil && self.badgeDetail != nil) {
-                                    
-                                    NSDictionary *fieldDict = @{badgeNumberTobeAssigned:self.badgeID};
-                                    
-                                    NSDictionary *assignBadgeToUserRequest = @{@"request" : @"assignBadgeToUserRequest",@"fieldDict":fieldDict};
-                                    
-                                    NSLog(@"assignBadgeToUserRequest:%@",assignBadgeToUserRequest);
-                                    
-                                    [TaskDetailInterfaceController openParentApplication:assignBadgeToUserRequest reply:^(NSDictionary *replyInfo, NSError *error) {
-                                        
-                                        NSLog(@"ReplyInfo assignBadgeUserRequest:%@",replyInfo);
-                                        if (error) {
-                                            
-                                            NSLog(@"Assign Badge To User  Error :%@",error);
-                                            
-                                        }else if ([replyInfo objectForKey:@"Error"]!=nil) {
-                                            
-                                            NSLog(@"Assign Badge To User  Error ");
-                                            
-                                        }else if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Badge assigned successfully"]) {
-                                            
-                                            NSLog(@"ReplyInfo :%@",replyInfo);
-                                            
-                                            if (self.badgeDetail !=nil ) {
-                                                
-                                                NSString *characterName = [self.badgeDetail objectForKey:@"Name"];
-                                                NSString *imageStr = [self.badgeDetail objectForKey:@"Badge_Image_URL__c"];
-                                                
-                                                NSURL *characterImageURL = [NSURL URLWithString:[imageStr stringByReplacingOccurrencesOfString:@"imagetypeplaceholder" withString:@"standard_medium"]];
-                                                
-                                                NSDictionary *detailInfo = @{@"badgeName" : [NSString stringWithFormat:@"%@ badge assigned",characterName],@"badgeImage":characterImageURL};
-                                                
-                                                [self pushControllerWithName:@"BadgeAssignInterfaceController" context:detailInfo];
-                                            }
-                                            
-                                        }
-                                    }];
-                                }
+                            NSLog(@"createNewBadgeRequest Error :%@",error);
+                            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                            
+                        }else if ([replyInfo objectForKey:@"Error"]!=nil) {
+                            
+                            NSLog(@"createNewBadgeRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+                            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                            
+                            
+                        }else if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Badge Created Successfully"]) {
  
-   
+                            if ([replyInfo objectForKey:@"objectID"] != nil && [replyInfo objectForKey:@"objectID"] != (id)[NSNull null]) {
+                                self.badgeID = [replyInfo objectForKey:@"objectID"];
                             }
                             
-                        }];
-                
-                    }
-                }];
+                            if ([replyInfo objectForKey:@"BadgeDetail"] != nil && [replyInfo objectForKey:@"BadgeDetail"] != (id)[NSNull null]) {
+                                self.badgeDetail = [replyInfo objectForKey:@"BadgeDetail"];
+                            }
+                            
+                            
+                            NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.metacube.mobile.salesforcemarvel"];
+                            
+                            
+                            if ([shared valueForKey:@"SFUserID"] != (id)[NSNull null] && [shared valueForKey:@"SFUserID"] != nil){
+                                
+                                NSString *userID = [shared valueForKey:@"SFUserID"];
+                                NSDictionary *fetchUserBadgeRequest = @{@"request" : @"fetchUserBadgeRequest",@"userID":userID};
+                                
+                                
+                                NSLog(@"Fetch user badge request:%@",fetchUserBadgeRequest);
+                                
+                                [TaskDetailInterfaceController openParentApplication:fetchUserBadgeRequest reply:^(NSDictionary *replyInfo, NSError *error) {
+                                    
+                                    
+                                    NSLog(@"fetchUserBadgeRequest: ReplyInfo %@",replyInfo);
+                                    
+                                    
+                                    if (error) {
+                                        
+                                        NSLog(@"fetchUserBadgeRequest Error :%@",error);
+                                        [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                                        
+                                    }else if ([replyInfo objectForKey:@"Error"]!=nil) {
+                                        
+                                        NSLog(@"fetchUserBadgeRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+                                        [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                                        
+                                    }else if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Fetch User Badge Success"]) {
+                                        
+                                        NSString *badgeNumberTobeAssigned = @"";
+                                        if ([replyInfo objectForKey:@"badgeNumberTobeAssigned"]!=nil && [replyInfo objectForKey:@"badgeNumberTobeAssigned"] != (id)[NSNull null]) {
+                                            badgeNumberTobeAssigned = [replyInfo objectForKey:@"badgeNumberTobeAssigned"];
+                                        }
+                                        
+                                        if (self.badgeID != nil && ![self.badgeID isEqualToString:@""] && self.badgeDetail != nil && ![badgeNumberTobeAssigned isEqualToString:@""]) {
+                                            
+                                            NSDictionary *fieldDict = @{badgeNumberTobeAssigned:self.badgeID};
+                                            
+                                            NSDictionary *assignBadgeToUserRequest = @{@"request" : @"assignBadgeToUserRequest",@"fieldDict":fieldDict};
+                                            
+                                            NSLog(@"assignBadgeToUserRequest:%@",assignBadgeToUserRequest);
+                                            
+                                            [TaskDetailInterfaceController openParentApplication:assignBadgeToUserRequest reply:^(NSDictionary *replyInfo, NSError *error) {
+                                                
+                                                NSLog(@"ReplyInfo assignBadgeUserRequest:%@",replyInfo);
+                                                if (error) {
+                                                    
+                                                    NSLog(@"assignBadgeUserRequest Error :%@",error);
+                                                    [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                                                    
+                                                    
+                                                }else if ([replyInfo objectForKey:@"Error"]!=nil) {
+                                                    
+                                                    
+                                                    NSLog(@"assignBadgeUserRequest Error :%@",[replyInfo objectForKey:@"Error"]);
+                                                    [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                                                    
+                                                    
+                                                }else if ([replyInfo objectForKey:@"Success"]!=nil && [[replyInfo objectForKey:@"Success"] isEqualToString:@"Badge assigned successfully"]) {
+                                                    
+                                                    NSLog(@"assignBadgeUserRequest ReplyInfo :%@",replyInfo);
+                                                    
+                                                    if (self.badgeDetail !=nil ) {
+                                                        
+                                                        NSString *characterName = [self.badgeDetail objectForKey:@"Name"];
+                                                        NSString *imageStr = [self.badgeDetail objectForKey:@"Badge_Image_URL__c"];
+                                                        
+                                                        NSURL *characterImageURL = [NSURL URLWithString:[imageStr stringByReplacingOccurrencesOfString:@"imagetypeplaceholder" withString:@"standard_medium"]];
+                                                        
+                                                        NSDictionary *detailInfo = @{@"badgeName" : [NSString stringWithFormat:@"%@ badge assigned",characterName],@"badgeImage":characterImageURL};
+                                                        
+                                                        [self pushControllerWithName:@"BadgeAssignInterfaceController" context:detailInfo];
+                                                    }else {
+                                                        
+                                                        NSLog(@"assignBadgeUserRequest Failed");
+                                                        [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                                                    }
+                                                    
+                                                }
+                                            }];
+                                        }else {
+                                            
+                                            NSLog(@"fetchUserBadgeRequest Failed");
+                                            [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                                        }
+                                        
+                                    }
+                                    
+                                }];
+                            } else {
+                                
+                                NSLog(@"createNewBadgeRequest Failed");
+                                [self pushControllerWithName:@"BadgeAssignInterfaceController" context:nil];
+                                
+                            }
+                        }
+                    }];
+                }
             }
-
             
         }
         
