@@ -31,8 +31,8 @@
 #import <SalesforceSDKCore/SFAuthenticationManager.h>
 
 @implementation ResultViewController
+@synthesize resultDataSet,charactarListArray,smartStoreIntf;
 
-@synthesize resultDataSet,charactarListArray,smartStoreIntf,charactersImageWithIDList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,8 +40,6 @@
     if (self) {
         smartStoreIntf = [[SmartStoreInterface alloc] init];
         resultDataSet = [[NSArray alloc] init];
-        charactersImageWithIDList = [[NSMutableArray alloc] init];
-        
     }
     return self;
 }
@@ -58,12 +56,16 @@
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    //    SFIdentityData *idData = [SFAuthenticationManager sharedManager].idCoordinator.idData;
+    //    NSLog(@"Access Token :%@",[SFAuthenticationManager sharedManager].idCoordinator.credentials.accessToken);
+    self.title = @"Contacts";
+    //    [self fetchSFDCContacts];
+    
+    self.charactersImageWithIDList = @[].mutableCopy;
     
     [self getMarvelCharactersList];
-//    SFIdentityData *idData = [SFAuthenticationManager sharedManager].idCoordinator.idData;
-//    NSLog(@"Access Token :%@",[SFAuthenticationManager sharedManager].idCoordinator.credentials.accessToken);
-    self.title = @"Contacts";
-//    [self fetchSFDCContacts];
     
     NSURL *imageURL = [NSURL URLWithString:@"http://i.annihil.us/u/prod/marvel/i/mg/6/70/4cd061e6d6573/portrait_incredible.jpg"];
     UIImageView *backgroundImageView = [[UIImageView alloc] init];
@@ -80,10 +82,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    int count = 0;
-//    if (nil != self.resultDataSet) {
-//        count = [self.resultDataSet count] + 1;
-//    }
+    //    int count = 0;
+    //    if (nil != self.resultDataSet) {
+    //        count = [self.resultDataSet count] + 1;
+    //    }
     return [self.resultDataSet count];
 }
 
@@ -93,9 +95,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                       reuseIdentifier:CellIdentifier];
+                                      reuseIdentifier:CellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
-
+        
     }
     
     NSDictionary *item = [[NSDictionary alloc]initWithDictionary:resultDataSet[indexPath.row]];
@@ -106,18 +108,18 @@
     NSString *recordMarvelImage = [item valueForKey:MARVEL_IMAGE_URL_FIELD_NAME];
     if (recordMarvelImage == (id)[NSNull null] || [recordMarvelImage stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0 )
     {
-        if(charactersImageWithIDList != nil && charactersImageWithIDList.count > 0) {
+        if(self.charactersImageWithIDList != nil && self.charactersImageWithIDList.count > 0) {
             
             int position = 0;
-            if (indexPath.row < charactersImageWithIDList.count)
+            if (indexPath.row < self.charactersImageWithIDList.count)
                 position = (int)indexPath.row;
             else
-                position = (int)(indexPath.row%charactersImageWithIDList.count);
-        
-            NSURL *imageURL = [NSURL URLWithString:[[[charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_image_url"] stringByReplacingOccurrencesOfString:IMAGE_TYPE_PLACEHOLDER withString:STANDARD_MEDIUM]];
+                position = (int)(indexPath.row%self.charactersImageWithIDList.count);
+            
+            NSURL *imageURL = [NSURL URLWithString:[[[self.charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_image_url"] stringByReplacingOccurrencesOfString:IMAGE_TYPE_PLACEHOLDER withString:STANDARD_MEDIUM]];
             NSLog(@"URL = %@",imageURL);
             [cell.imageView sd_setImageWithURL:imageURL
-                          placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
+                              placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
         } else {
             [cell.imageView setImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
         }
@@ -130,7 +132,7 @@
         [cell.imageView sd_setImageWithURL:imageURL
                           placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
     }
-
+    
     
     
     
@@ -149,18 +151,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
-
     
     NSMutableDictionary *selectedRecord = [[NSMutableDictionary alloc] initWithDictionary:[resultDataSet objectAtIndex:indexPath.row]];
-    if (charactersImageWithIDList!=nil && charactersImageWithIDList.count > 0) {
+    if (self.charactersImageWithIDList!=nil && self.charactersImageWithIDList.count > 0) {
         int position = 0;
-        if (indexPath.row < charactersImageWithIDList.count)
+        if (indexPath.row < self.charactersImageWithIDList.count)
             position = (int)indexPath.row;
         else
-            position = (int)(indexPath.row%charactersImageWithIDList.count);
+            position = (int)(indexPath.row%self.charactersImageWithIDList.count);
         
-        NSString *charImageURL = [[NSString alloc] initWithString:[[charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_image_url"]];
-        NSString *charID = [NSString stringWithFormat:@"%@",[[charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_char_id"]];
+        NSString *charImageURL = [[NSString alloc] initWithString:[[self.charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_image_url"]];
+        NSString *charID = [NSString stringWithFormat:@"%@",[[self.charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_char_id"]];
         [selectedRecord setValue:charImageURL forKey:@"CharImageURL"];
         [selectedRecord setValue:charID forKey:@"CharID"];
     }
@@ -196,7 +197,7 @@
             NSLog(@"Error parsing JSON.");
         }
         else {
-           
+            
             NSLog(@"Status %@ Limit %@",[jsonDict objectForKeyedSubscript:@"status"],[[jsonDict objectForKeyedSubscript:@"data"] objectForKey:@"limit"]);
             
             NSMutableArray *charInfoArray = [NSMutableArray arrayWithArray:[[jsonDict objectForKeyedSubscript:@"data"] objectForKey:@"results"]];
@@ -217,18 +218,18 @@
                         if ([imageURL rangeOfString:@"image_not_available"].location == NSNotFound) {
                             
                             NSString *characterID = [[charInfoArray objectAtIndex:count] objectForKey:@"id"];
-                        
+                            
                             NSDictionary *infoDict = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:imageURL,characterID, nil] forKeys:[NSArray arrayWithObjects:@"marvel_image_url",@"marvel_char_id", nil]];
                             
-                            [charactersImageWithIDList addObject:infoDict];
+                            [self.charactersImageWithIDList addObject:infoDict];
                         }
                     }
-                   
+                    
                 }
                 
             }
             
-            NSLog(@"Response of character Images with their id :%@",charactersImageWithIDList);
+            NSLog(@"Response of character Images with their id :%@",self.charactersImageWithIDList);
             
             [self fetchSFDCContacts];
         }
@@ -239,6 +240,7 @@
 
 - (void)request:(SFRestRequest *)request didLoadResponse:(id)dataResponse
 {
+    NSLog(@"dataResponse%@",dataResponse);
     NSArray *records = dataResponse[@"records"];
     if (nil != records) {
         NSDictionary *firstRecord = records[0];
@@ -248,8 +250,8 @@
                 NSString *type = [attributes valueForKey:@"type"];
                 if ([type isEqual:@"Contact"]) {
                     NSLog(@"Records : %@",records);
-//                    [self.smartStoreIntf insertContacts:records];
-//                    NSArray *results = [self.smartStoreIntf query:kAllContactsQuery];
+                    //                    [self.smartStoreIntf insertContacts:records];
+                    //                    NSArray *results = [self.smartStoreIntf query:kAllContactsQuery];
                     [self setResultDataSet:records];
                     [self updateMarvelImageURLWithID];
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -309,7 +311,7 @@
 
 - (void)updateMarvelImageURLWithID {
     
-    if (charactersImageWithIDList !=  nil && charactersImageWithIDList.count > 0) {
+    if (self.charactersImageWithIDList !=  nil && self.charactersImageWithIDList.count > 0) {
         int recordCount = (int)[self.resultDataSet count];
         
         for( int index = 0; index < recordCount;index++)
@@ -320,16 +322,16 @@
             NSString *recordMarvelCharID = [item valueForKey:MARVEL_CHAR_ID_FIELD_NAME];
             
             int position = 0;
-            if (index < charactersImageWithIDList.count)
+            if (index < self.charactersImageWithIDList.count)
                 position = (int)index;
             else
-                position = (int)(index%charactersImageWithIDList.count);
+                position = (int)(index%self.charactersImageWithIDList.count);
             
             NSString *imageURLStr;
             if (recordMarvelImage == (id)[NSNull null] || [recordMarvelImage stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0 )
             {
-                if ([charactersImageWithIDList objectAtIndex:position]!=nil) {
-                    imageURLStr = [[[charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_image_url"] stringByReplacingOccurrencesOfString:IMAGE_TYPE_PLACEHOLDER withString:STANDARD_MEDIUM];
+                if ([self.charactersImageWithIDList objectAtIndex:position]!=nil) {
+                    imageURLStr = [[[self.charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_image_url"] stringByReplacingOccurrencesOfString:IMAGE_TYPE_PLACEHOLDER withString:STANDARD_MEDIUM];
                 }
                 
                 
@@ -340,7 +342,7 @@
             
             if (recordMarvelCharID == (id)[NSNull null] || [recordMarvelCharID stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0 ) {
                 
-                charIDStr = [[charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_char_id"];
+                charIDStr = [[self.charactersImageWithIDList objectAtIndex:position] objectForKey:@"marvel_char_id"];
                 
             }
             
@@ -366,7 +368,7 @@
             
             
         }
-
+        
     }
 }
 
