@@ -61,8 +61,8 @@
 		272FAE591B78BDC3002B0ECC /* CharacterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 272FAE571B78BDC3002B0ECC /* CharacterListViewController.xib */; };
 		272FAE5D1B79F097002B0ECC /* ComicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 272FAE5B1B79F097002B0ECC /* ComicListViewController.m */; };
 		272FAE5E1B79F097002B0ECC /* ComicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 272FAE5C1B79F097002B0ECC /* ComicListViewController.xib */; };
-		273E921E1BA019C100DAB932 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273E921C1BA019C100DAB932 /* InitialViewController.m */; settings = {ASSET_TAGS = (); }; };
-		273E921F1BA019C100DAB932 /* InitialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273E921D1BA019C100DAB932 /* InitialViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		273E921E1BA019C100DAB932 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 273E921C1BA019C100DAB932 /* InitialViewController.m */; };
+		273E921F1BA019C100DAB932 /* InitialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273E921D1BA019C100DAB932 /* InitialViewController.xib */; };
 		277072CF1B6222C00052F1AA /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 277072CD1B6222C00052F1AA /* AccountsViewController.m */; };
 		277072D01B6222C00052F1AA /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 277072CE1B6222C00052F1AA /* AccountsViewController.xib */; };
 		277072D91B6236790052F1AA /* tab-acont-icn.png in Resources */ = {isa = PBXBuildFile; fileRef = 277072D11B6236790052F1AA /* tab-acont-icn.png */; };
@@ -2009,6 +2009,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeSqlAggregator/SalesForceMarvels-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2051,6 +2052,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NativeSqlAggregator/SalesForceMarvels-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
