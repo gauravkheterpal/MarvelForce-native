@@ -30,7 +30,7 @@
     [backgroundImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
     [backgroundImageView setFrame:self.tableView.frame];
     
-    [self.tableView setBackgroundView:backgroundImageView];
+    //[self.tableView setBackgroundView:backgroundImageView];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"NewFeed" style:UIBarButtonItemStyleBordered target:self action:@selector(newFeedTap)];
     
@@ -120,7 +120,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.contentView.frame];
-    backgroundView.backgroundColor = [UIColor colorWithRed:239/255.f green:239/255.f blue:244/255.f alpha:1.0f];
+    backgroundView.backgroundColor = [UIColor whiteColor];
     backgroundView.alpha = 0.7;
     cell.backgroundView = backgroundView;
     
@@ -211,7 +211,7 @@
             }
         }
     }
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 
 }

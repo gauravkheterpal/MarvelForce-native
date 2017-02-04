@@ -24,7 +24,7 @@
     [backgroundImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
     [backgroundImageView setFrame:self.tableView.frame];
     
-    [self.tableView setBackgroundView:backgroundImageView];
+   // [self.tableView setBackgroundView:backgroundImageView];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

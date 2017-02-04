@@ -55,7 +55,7 @@
         self.textField.autoresizingMask  = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     }
     NSURL *imageURL = [NSURL URLWithString:@"http://i.annihil.us/u/prod/marvel/i/mg/4/60/52695285d6e7e/portrait_incredible.jpg"];
-    [backgroundImgView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
+   // [backgroundImgView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
     
     [[self.textField layer] setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [[self.textField layer] setBorderWidth:2];

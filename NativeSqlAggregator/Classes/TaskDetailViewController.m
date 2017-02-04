@@ -24,7 +24,7 @@
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     
     NSURL *imageURL = [NSURL URLWithString:@"http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/portrait_incredible.jpg"];
-    [self.backgroundImgView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
+   // [self.backgroundImgView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
     
     CALayer * l = [self.profileImage layer];
     [l setMasksToBounds:YES];

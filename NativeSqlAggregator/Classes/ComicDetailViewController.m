@@ -102,7 +102,7 @@
          
             NSURL *portrait_incridible_imageURL = [NSURL URLWithString:[imageURL stringByReplacingOccurrencesOfString:IMAGE_TYPE_PLACEHOLDER withString:PORTRAIT_INCREDIBLE]];
             //    portrait_incredible
-            [self.backgroundImage sd_setImageWithURL:portrait_incridible_imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
+           // [self.backgroundImage sd_setImageWithURL:portrait_incridible_imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
             
             NSURL *standard_medium_imageURL = [NSURL URLWithString:[imageURL stringByReplacingOccurrencesOfString:IMAGE_TYPE_PLACEHOLDER withString:STANDARD_MEDIUM]];
             

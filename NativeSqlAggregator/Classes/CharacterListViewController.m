@@ -32,7 +32,7 @@
     [backgroundImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"ProfilePlaceholder.png"]];
     [backgroundImageView setFrame:self.tableView.frame];
     
-    [self.tableView setBackgroundView:backgroundImageView];
+   // [self.tableView setBackgroundView:backgroundImageView];
     
 }
 
